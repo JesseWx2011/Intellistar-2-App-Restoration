@@ -1,0 +1,34 @@
+@font-face {
+  font-family: 'AkkoRegular';
+  src: url('/fonts/Akko-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'AkkoMedium';
+  src: url('/fonts/Akko-Medium.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'AkkoLight';
+  src: url('/fonts/Akko-Light.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'AkkoThin';
+  src: url('/fonts/Akko-Thin.woff2') format('woff2');
+}
+
+$font-medium: 'AkkoMedium', sans-serif;
+$font-light: 'AkkoLight', sans-serif;
+$font-thin: 'AkkoThin', sans-serif;
+
+* {
+  box-sizing: border-box;
+}
+
+body, html {
+  margin: 0;
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+}
