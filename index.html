@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>lol i2</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#014f9d">
+  <meta name="apple-mobile-web-app-title" content="IntelliStar 2 Simulator">
+  <meta name="application-name" content="IntelliStar 2 Simulator">
+  <link rel="stylesheet" type="text/css" href="css/i2.css">
+  <link rel="stylesheet" type="text/css" href="css/auto-complete.css">
+  <style>
+    .background {
+      transform: none !important;
+    }
+
+    .city-name {
+      transform: none !important;
+    }
+
+    .autocomplete-suggestions {
+      background: #FFFFFF;
+      color: #000;
+      text-shadow: none;
+      font-family: 'AkkoLight';
+      font-size: 18px;
+    }
+
+  </style>
+</head>
+<body class="hd">
+<div id="container">
+  <audio id="audio"></audio>
+  <audio id="audio_background"></audio>
+
+  <div class="background background-image">
+
+    <div class="header">
+      <div class="city-name">HTML I2 Simulator</div>
+    </div>
+
+    <div class="box-background">
+      <div class="background-image"></div>
+    </div>
+
+    <div class="main">
+      <div class="product product-settings">
+        <div class="product-header">
+          <div>Settings</div>
+        </div>
+        <div class="product-body">
+          <div class="settings-line">
+            <div class="settings-name">Location</div>
+            <input type="text" id="location" value="30.41,-87.215" placeholder="Start typing your city name">
+          </div>
+          <div class="settings-line">
+            <div class="settings-name">Crawl Line</div>
+            <input id="crawl" type="text" maxlength="280" value="" placeholder="This text will scroll across the bottom">
+          </div>
+          <div class="settings-line">
+            <div class="settings-name">Background</div>
+            <select id="background" onchange="backgroundChange(event)">
+              <option value="0">&starf; Custom Background</option><option value="dashing_in_the_canyons.png">dashing_in_the_canyons.png</option><option value="halloween_reeses.png">halloween_reeses.png</option><option value="optimum_boardwalk.png">optimum_boardwalk.png</option><option value="optimum_fall.png">optimum_fall.png</option><option value="rocks.png" selected="selected">rocks.png</option><option value="snow.jpg">snow.jpg</option><option value="spectrum_houses.png">spectrum_houses.png</option><option value="stairs.jpg">stairs.jpg</option><option value="traffic_lights.jpg">traffic_lights.jpg</option><option value="twc_most_trusted.png">twc_most_trusted.png</option><option value="valley.jpg">valley.jpg</option>
+            </select>&nbsp;
+            <select id="background_blur" onchange="blurChange(event)">
+              <option value="0">Disable Blur</option><option value="1" selected="selected">Enable Blur</option>
+            </select>
+          </div>
+          <div class="settings-line setting-custom-background" style="display: none;">
+              <div class="settings-name">BG Link</div>
+              <input id="custom_background" type="text" maxlength="1000" onchange="backgroundChange(event)" value="" placeholder="https:// ... link to your background, use imgur.com to upload files">
+          </div>
+          <div class="settings-line">
+            <div class="settings-name">Music</div>
+            <select id="music" onchange="musicChange(event)">
+              <option value="CloudsMayCome.mp3" selected="selected">Clouds May Come</option><option value="TomorrowsSunrise.mp3">Tomorrow's Sunrise</option><option value="StormAlert.mp3">Storm Alert</option><option value="storm_alert_2017.mp3">Storm Alert (2017)</option><option value="SevereMusic.mp3">Severe (2018)</option><option value="AMHQ2.mp3">AMHQ</option><option value="MorningRush.mp3">Morning Rush Theme</option><option value="MorningRush2.mp3">Morning Rush Theme Alt</option><option value="WakeUpWithAl.mp3">Wake Up With Al Theme</option><option value="BrandAnthem.mp3">TWC Brand Anthem</option><option value="Song4.mp3">TWC Song 4</option><option value="Song6.mp3">TWC Song 6</option><option value="Song7.mp3">TWC Song 7</option><option value="Song11.mp3">TWC Song 11</option><option value="bad_bad_simba-paprika_soul.mp3">Bad, Bad Simba</option><option value="brave_new_world-the_rippingtons.mp3">Brave New World</option><option value="la_salsa_en_mi-bernie_williams.mp3">La Salsa En Mi</option><option value="lydian-norman_brown.mp3">Lydian</option><option value="mildreds_attraction-joyce_cooling.mp3">Mildred's Attraction</option><option value="ocean_view-pieces_of_a_dream.mp3">Ocean Views</option><option value="pacific_coast_highway-jeff_lorber.mp3">Pacific Coast Highway</option><option value="Restless_Heart-Chris_Geith.mp3">Restless Heart</option><option value="santa_monica_triangle-jeff_lorber.mp3">Santa Monica Triangle</option><option value="shakin_the_shack-dave_koz.mp3">Shakin' The Shack</option><option value="sidewayz_najee.mp3">Sidewayz</option><option value="simple_pleasure-jeanne_ricks.mp3">Simple Pleasure</option><option value="the_gift-3rd_force.mp3">The Gift</option><option value="viaduct_four80east.mp3">Viaduct</option><option value="wait_a_minute-mark_krurnowski.mp3">Wait A Minute</option><option value="RyanFarishEnchanted60.mp3">Enchanted</option>
+            </select>
+            <button id="playButton" onclick="previewMusic(event)">&#9658;</button>
+          </div>
+          <div class="settings-line">
+            <div class="settings-name">Narrator</div>
+            <select id="narrator">
+              <option value="Allen" selected="selected">Allen Jackson (Limited)</option><option value="_">None</option>
+            </select>
+          </div>
+          <div class="settings-line">
+            <div class="settings-name">Logo</div>
+            <select id="logo">
+              <option value="default" selected="selected">Default</option><option value="red">Red</option><option value="green">Green</option>
+            </select>
+          </div>
+          <div class="save">
+            <button onclick="save(event)">Save</button>
+            <button onclick="save(event, true)">Run</button>
+            <span id="saved"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="credits">
+      Created by <a target="_blank" href="https://jes.re">Jesse</a><br/>
+      Thanks to luesjo12 for the pretty radar map<br/>
+      Thanks to <a href="https://www.youtube.com/channel/UCraky_ptl4ySYPSJKqPW-8A" target="_blank">TWCKelby</a> and
+      <a href="https://www.youtube.com/watch?v=PWjaYPXWgIE" target="_blank">TWCJim</a> for the music cuts<br/>
+      Animated icons sourced from the <a target="_blank" href="https://www.amazon.com/Weather-Group-LLC-Watch-Channel/dp/B07PNRRTN6">Watch TWC App</a><br/>
+      Allen Jackson Narrations sourced the <a target="_blank" href="http://twctodayforums.com/forums/local-forecast/intellistar-narrations/">Wake Up With AL App</a><br/>
+    </div>
+
+  </div>
+</div>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"version":"2024.11.0","token":"0dd8d6e9108b4817aa91c94f5e9354b7","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+<script type="text/javascript" src="//www.gstatic.com/cast/sdk/libs/caf_receiver/v3/cast_receiver_framework.js"></script>
+<script src="js/auto-complete.min.js"></script>
+<script src="js/autosize.js"></script>
+<script src="socket.io/socket.io.js"></script>
+<script src="/js/settings.js"></script>
+</html>
